@@ -9,7 +9,7 @@ Little widget to display the program and roster of the Dutch Volleybal Organisat
 5. You will see four options: Widget Title, RSS Feed URL, Rows, Club, and Color.
 
 ## Options
-##### Widget Title
+#### Widget Title
 The title which the widget will display, defaults to Nevobo Widget
 
 #### RSS Feed URL
