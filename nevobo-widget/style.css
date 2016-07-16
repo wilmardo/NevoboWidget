@@ -3,9 +3,13 @@
 }
 
 .nevoboWidgetTable td {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
   text-align: left;
-	padding: 3px;
+	padding: 0.1vw;
+	max-width:7vw;
+}
+
+.nevoboWidgetTable td > .wrap{
+   text-overflow:ellipsis;
+   overflow:hidden;
+   white-space:nowrap;
 }

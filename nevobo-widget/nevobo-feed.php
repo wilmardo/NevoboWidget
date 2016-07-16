@@ -130,22 +130,22 @@ class nevoboWidget extends WP_Widget {
             $clubs = "";
             if(stripos($match[0], $club) !== false) {
               //first name is home
-              $clubs .= "<td><font color='" . $color . "'>" . $match[0] . "</font></td>";
+              $clubs .= "<td><div class='wrap'><font color='" . $color . "'>" . $match[0] . "</font></div></td>";
               $clubs .= "<td> - </td>";
-              $clubs .= "<td>" . $match[1] . "</td>";
+              $clubs .= "<td><div class='wrap'>" . $match[1] . "</div></td>";
             } else if(stripos($match[1], $club) !== false) {
               //second name is home
-              $clubs .= "<td>" . $match[0] . "</td>";
+              $clubs .= "<td><div class='wrap'>" . $match[0] . "</div></td>";
               $clubs .= "<td> - </td>";
-              $clubs .= "<td><font color='" . $color . "'>" . $match[1] . "</font></td>";
+              $clubs .= "<td><div class='wrap'><font color='" . $color . "'>" . $match[1] . "</font></div></td>";
             } else if ($club !== ""){
               //clubname wrong
               return "<b>Verening kan niet gevonden worden in de opgegeven feed</b>";
             } else {
               //no color
-              $clubs .= "<td>" . $match[0] . "</td>";
+              $clubs .= "<td><div class='wrap'>" . $match[0] . "</div></td>";
               $clubs .= "<td> - </td>";
-              $clubs .= "<td>" . $match[1] . "</td>";
+              $clubs .= "<td><div class='wrap'>" . $match[1] . "</div></td>";
             }
 
             $date = strtotime($item->pubDate);
