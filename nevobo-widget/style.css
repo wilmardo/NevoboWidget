@@ -1,0 +1,11 @@
+.nevoboWidgetTable {
+	width: 100%;
+}
+
+.nevoboWidgetTable td {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+  text-align: left;
+	padding: 3px;
+}
