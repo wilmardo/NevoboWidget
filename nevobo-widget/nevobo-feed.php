@@ -138,9 +138,14 @@ class nevoboWidget extends WP_Widget {
               $clubs .= "<td>" . $match[0] . "</td>";
               $clubs .= "<td> - </td>";
               $clubs .= "<td><font color='" . $color . "'>" . $match[1] . "</font></td>";
-            } else {
+            } else if ($club !== ""){
               //clubname wrong
               return "<b>Verening kan niet gevonden worden in de opgegeven feed</b>";
+            } else {
+              //no color
+              $clubs .= "<td>" . $match[0] . "</td>";
+              $clubs .= "<td> - </td>";
+              $clubs .= "<td>" . $match[1] . "</td>";
             }
 
             $date = strtotime($item->pubDate);
