@@ -113,8 +113,13 @@ class nevoboWidget extends WP_Widget {
 
     function generateWidget($url, $rows, $color, $club) {
       date_default_timezone_set('Europe/Amsterdam');
-      $rawFeed = file_get_contents($url);
-      $xml = new SimpleXmlElement($rawFeed);
+      require_once 'simplepie-1.3.1/autoloader.php';
+      $feed = new SimplePie();
+      $feed->set_feed_url($url);
+      $feed->enable_order_by_date(false);
+      $feed->enable_cache();
+      $feed->set_cache_location('simplepie-1.3.1/cache');
+      $feed->init();
 
       $code = "<div class='container'>";
       $count = 0;
@@ -122,11 +127,10 @@ class nevoboWidget extends WP_Widget {
       //start processing rss
       if(strpos($url, 'programma.rss') !== false) {
         //process programma.rss
-        foreach ($xml->channel->item as $item) {
-          if ($count < $rows) {
+        foreach ($feed->get_items(0, $rows) as $item) {
             //stop when rows are full
 
-            $match = explode(" - ", (substr(strstr($item->title, ': '), 2))); // extract two clubs from title
+            $match = explode(" - ", (substr(strstr($item->get_title(), ': '), 2))); // extract two clubs from title
             $clubs = "";
             if(stripos($match[0], $club) !== false) {
               //first name is home
@@ -148,22 +152,19 @@ class nevoboWidget extends WP_Widget {
               $clubs .= "<div class='cell club'>" . $match[1] . "</div>";
             }
 
-            $date = strtotime($item->pubDate);
+            $date = strtotime($item->get_date());
             $matchDate = strftime("%d-%m", $date);
             $matchTime = strftime("%R", $date);
 
             //markup html table with data
             $code .= "<div class='row'>";
-            $code .= "<div class='cell date'><a href='" . $item->link . "' target=_BLANK>" . $matchDate . "</a></div>";
+            $code .= "<div class='cell date'><a href='" . $item->get_link() . "' target=_BLANK>" . $matchDate . "</a></div>";
             $code .= $clubs;
             $code .= "<div class='cell time'>" . $matchTime . "</div>";
             $code .= "</div>";
 
             $count++;
-          } else {
-            break;
-          }
-        } // end processing rss
+          } // end processing rss
       } else if(strpos($url, 'uitslagen.rss') !== false) {
         //process uitslagen
       } else {
