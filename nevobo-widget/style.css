@@ -16,6 +16,10 @@
 	flex: 2;
 	flex-grow: 1;
 }
-.nevoboDate .nevoboTime {
+.nevoboDate {
+	flex-shrink: 0;
+	text-decoration: underline;
+}
+.nevoboTime {
 	flex-shrink: 0;
 }
