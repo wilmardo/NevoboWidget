@@ -121,7 +121,7 @@ class nevoboWidget extends WP_Widget {
       $feed->set_cache_location('simplepie-1.3.1/cache');
       $feed->init();
 
-      $code = "<div class='container'>";
+      $code = "<div class='nevoboContainer'>";
       $count = 0;
 
       //start processing rss
@@ -134,22 +134,22 @@ class nevoboWidget extends WP_Widget {
             $clubs = "";
             if(stripos($match[0], $club) !== false) {
               //first name is home
-              $clubs .= "<div class='cell club'><font color='" . $color . "'>" . $match[0] . "</font></div>";
-              $clubs .= "<div class='cell dash'> - </div>";
-              $clubs .= "<div class='cell club'>" . $match[1] . "</div>";
+              $clubs .= "<div class='nevoboCell nevoboClub'><font color='" . $color . "'>" . $match[0] . "</font></div>";
+              $clubs .= "<div class='nevoboCell nevoboDash'> - </div>";
+              $clubs .= "<div class='nevoboCell nevoboClub'>" . $match[1] . "</div>";
             } else if(stripos($match[1], $club) !== false) {
               //second name is home
-              $clubs .= "<div class='cell club'>" . $match[0] . "</div>";
-              $clubs .= "<div class='cell dash'> - </div>";
-              $clubs .= "<div class='cell club'><font color='" . $color . "'>" . $match[1] . "</font></div>";
+              $clubs .= "<div class='nevoboCell nevoboClub'>" . $match[0] . "</div>";
+              $clubs .= "<div class='nevoboCell nevoboDash'> - </div>";
+              $clubs .= "<div class='nevoboCell nevoboClub'><font color='" . $color . "'>" . $match[1] . "</font></div>";
             } else if ($club !== ""){
               //clubname wrong
               return "<b>Verening kan niet gevonden worden in de opgegeven feed</b>";
             } else {
               //no color
-              $clubs .= "<div class='cell club'>" . $match[0] . "</div>";
-              $clubs .= "<div class='cell dash'> - </div>";
-              $clubs .= "<div class='cell club'>" . $match[1] . "</div>";
+              $clubs .= "<div class='nevoboCell nevoboClub'>" . $match[0] . "</div>";
+              $clubs .= "<div class='nevoboCell nevoboDash'> - </div>";
+              $clubs .= "<div class='nevoboCell nevoboClub'>" . $match[1] . "</div>";
             }
 
             $date = strtotime($item->get_date());
@@ -157,10 +157,10 @@ class nevoboWidget extends WP_Widget {
             $matchTime = strftime("%R", $date);
 
             //markup html table with data
-            $code .= "<div class='row'>";
-            $code .= "<div class='cell date'><a href='" . $item->get_link() . "' target=_BLANK>" . $matchDate . "</a></div>";
+            $code .= "<div class='nevoboRow'>";
+            $code .= "<div class='nevoboCell nevoboDate'><a href='" . $item->get_link() . "' target=_BLANK>" . $matchDate . "</a></div>";
             $code .= $clubs;
-            $code .= "<div class='cell time'>" . $matchTime . "</div>";
+            $code .= "<div class='nevoboCell nevoboTime'>" . $matchTime . "</div>";
             $code .= "</div>";
 
             $count++;

@@ -1,21 +1,21 @@
-.container {
+.nevoboContainer {
 	width: 100%;
 }
-.row {
+.nevoboRow {
 	display: flex;
 	flex-basis: auto;
 }
-.cell {
+.nevoboCell {
 	align-items: left;
 	white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 	padding: 3px;
 }
-.club {
+.nevoboClub {
 	flex: 2;
 	flex-grow: 1;
 }
-.date .time {
+.nevoboDate .nevoboTime {
 	flex-shrink: 0;
 }
