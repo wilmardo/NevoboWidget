@@ -116,7 +116,7 @@ class nevoboWidget extends WP_Widget {
       $rawFeed = file_get_contents($url);
       $xml = new SimpleXmlElement($rawFeed);
 
-      $code = "<table class='nevoboWidgetTable'>";
+      $code = "<div class='container'>";
       $count = 0;
 
       //start processing rss
@@ -124,28 +124,28 @@ class nevoboWidget extends WP_Widget {
         //process programma.rss
         foreach ($xml->channel->item as $item) {
           if ($count < $rows) {
-            //extract data from rss and markup html
+            //stop when rows are full
 
-            $match = explode(" - ", (substr(strstr($item->title, ': '), 2)));
+            $match = explode(" - ", (substr(strstr($item->title, ': '), 2))); // extract two clubs from title
             $clubs = "";
             if(stripos($match[0], $club) !== false) {
               //first name is home
-              $clubs .= "<td><div class='wrap'><font color='" . $color . "'>" . $match[0] . "</font></div></td>";
-              $clubs .= "<td> - </td>";
-              $clubs .= "<td><div class='wrap'>" . $match[1] . "</div></td>";
+              $clubs .= "<div class='cell club'><font color='" . $color . "'>" . $match[0] . "</font></div>";
+              $clubs .= "<div class='cell dash'> - </div>";
+              $clubs .= "<div class='cell club'>" . $match[1] . "</div>";
             } else if(stripos($match[1], $club) !== false) {
               //second name is home
-              $clubs .= "<td><div class='wrap'>" . $match[0] . "</div></td>";
-              $clubs .= "<td> - </td>";
-              $clubs .= "<td><div class='wrap'><font color='" . $color . "'>" . $match[1] . "</font></div></td>";
+              $clubs .= "<div class='cell club'>" . $match[0] . "</div>";
+              $clubs .= "<div class='cell dash'> - </div>";
+              $clubs .= "<div class='cell club'><font color='" . $color . "'>" . $match[1] . "</font></div>";
             } else if ($club !== ""){
               //clubname wrong
               return "<b>Verening kan niet gevonden worden in de opgegeven feed</b>";
             } else {
               //no color
-              $clubs .= "<td><div class='wrap'>" . $match[0] . "</div></td>";
-              $clubs .= "<td> - </td>";
-              $clubs .= "<td><div class='wrap'>" . $match[1] . "</div></td>";
+              $clubs .= "<div class='cell club'>" . $match[0] . "</div>";
+              $clubs .= "<div class='cell dash'> - </div>";
+              $clubs .= "<div class='cell club'>" . $match[1] . "</div>";
             }
 
             $date = strtotime($item->pubDate);
@@ -153,11 +153,11 @@ class nevoboWidget extends WP_Widget {
             $matchTime = strftime("%R", $date);
 
             //markup html table with data
-            $code .= "<tr>";
-            $code .= "<td><a href='" . $item->link . "' target=_BLANK>" . $matchDate . "</a></td>";
+            $code .= "<div class='row'>";
+            $code .= "<div class='cell date'><a href='" . $item->link . "' target=_BLANK>" . $matchDate . "</a></div>";
             $code .= $clubs;
-            $code .= "<td>" . $matchTime . "</td>";
-            $code .= "</tr>";
+            $code .= "<div class='cell time'>" . $matchTime . "</div>";
+            $code .= "</div>";
 
             $count++;
           } else {
@@ -170,7 +170,7 @@ class nevoboWidget extends WP_Widget {
         //feed not programma or uitslagen
         return "<b>Feed URL kan niet verwerkt worden, is het wel een Nevobo Feed?</b>";
       }
-      $code .= "</table>";
+      $code .= "</div>";
       return $code;
     }
 

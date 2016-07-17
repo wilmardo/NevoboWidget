@@ -1,15 +1,21 @@
-.nevoboWidgetTable {
+.container {
 	width: 100%;
 }
-
-.nevoboWidgetTable td {
-  text-align: left;
-	padding: 0.1vw;
-	max-width:7vw;
+.row {
+	display: flex;
+	flex-basis: auto;
 }
-
-.nevoboWidgetTable td > .wrap{
-   text-overflow:ellipsis;
-   overflow:hidden;
-   white-space:nowrap;
+.cell {
+	align-items: left;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+	padding: 3px;
+}
+.club {
+	flex: 2;
+	flex-grow: 1;
+}
+.date .time {
+	flex-shrink: 0;
 }
