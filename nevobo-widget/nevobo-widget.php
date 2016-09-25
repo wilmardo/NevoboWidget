@@ -114,7 +114,10 @@ class nevoboWidget extends WP_Widget {
   }
 
   function generateWidget($url, $rows, $color, $club) {
+    /* Set locale to Dutch */
+    setlocale(LC_ALL, 'nl_NL');
     date_default_timezone_set('Europe/Amsterdam');
+    
     require_once plugin_dir_path( __FILE__ ) . 'simplepie-' . SPVERSION . '/autoloader.php';
     $feed = new SimplePie();
     $feed->set_feed_url($url);
@@ -130,7 +133,6 @@ class nevoboWidget extends WP_Widget {
 
     //start processing rss
     if( $maxitems == 0) {
-      die('this is check 1.5');
       return "<b>Feed bevat geen items</b>";
     }
     if(strpos($url, 'programma.rss') !== false) {
