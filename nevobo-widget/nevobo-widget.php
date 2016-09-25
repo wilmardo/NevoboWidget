@@ -115,7 +115,7 @@ class nevoboWidget extends WP_Widget {
 
   function generateWidget($url, $rows, $color, $club) {
     date_default_timezone_set('Europe/Amsterdam');
-    require_once 'simplepie-' . SPVERSION . '/autoloader.php';
+    require_once plugin_dir_path( __FILE__ ) . 'simplepie-' . SPVERSION . '/autoloader.php';
     $feed = new SimplePie();
     $feed->set_feed_url($url);
     $feed->enable_order_by_date(false);
