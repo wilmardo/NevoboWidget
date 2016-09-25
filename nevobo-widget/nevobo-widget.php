@@ -200,12 +200,14 @@ class nevoboWidget extends WP_Widget {
 
         $date = strtotime($item->get_date());
         $matchDate = strftime("%d-%m", $date);
+        $result = explode("-", $titleSplit[1]);
+        $result = array_map('round', $result);
 
         //markup html table with data
         $code .= "<div class='nevoboRow'>";
         $code .= "<div class='nevoboCell nevoboDate'><a href='" . $item->get_link() . "' target=_BLANK>" . $matchDate . "</a></div>";
         $code .= $clubs;
-        $code .= "<div class='nevoboCell nevoboResult'>" . $titleSplit[1] . "</div>";
+        $code .= "<div class='nevoboCell nevoboResult'>" . $result[0] . " - " . $result[1] . "</div>";
         $code .= "</div>";
       } // end processing rss
     } else {
