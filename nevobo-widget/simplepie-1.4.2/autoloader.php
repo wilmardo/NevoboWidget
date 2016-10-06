@@ -43,7 +43,7 @@
 
 
 // autoloader
-spl_autoload_register(array(new SimplePie_Autoloader(), 'autoload'));
+spl_autoload_register(array(new nevoboWidget_SimplePie_Autoloader(), 'autoload'));
 
 if (!class_exists('SimplePie'))
 {
@@ -56,7 +56,7 @@ if (!class_exists('SimplePie'))
  * @package SimplePie
  * @subpackage API
  */
-class SimplePie_Autoloader
+class nevoboWidget_SimplePie_Autoloader
 {
 	/**
 	 * Constructor

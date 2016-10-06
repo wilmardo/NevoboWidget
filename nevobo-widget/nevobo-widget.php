@@ -8,7 +8,7 @@ Author URI: https://wilmardenouden.nl
 License: MIT
 */
 
-define('SPVERSION','1.4.2');
+define('nevoboWidget_SPVERSION','1.4.2');
 
 class nevoboWidget extends WP_Widget {
 
@@ -117,7 +117,7 @@ class nevoboWidget extends WP_Widget {
     /* Set locale to Dutch */
     setlocale(LC_ALL, 'nl_NL');
     date_default_timezone_set('Europe/Amsterdam');
-    
+
     require_once plugin_dir_path( __FILE__ ) . 'simplepie-' . SPVERSION . '/autoloader.php';
     $feed = new SimplePie();
     $feed->set_feed_url($url);
