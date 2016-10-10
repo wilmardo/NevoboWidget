@@ -118,7 +118,7 @@ class nevoboWidget extends WP_Widget {
     setlocale(LC_ALL, 'nl_NL');
     date_default_timezone_set('Europe/Amsterdam');
 
-    require_once plugin_dir_path( __FILE__ ) . 'simplepie-' . SPVERSION . '/autoloader.php';
+    require_once plugin_dir_path( __FILE__ ) . 'simplepie-' . nevoboWidget_SPVERSION . '/autoloader.php';
     $feed = new SimplePie();
     $feed->set_feed_url($url);
     $feed->enable_order_by_date(false);
